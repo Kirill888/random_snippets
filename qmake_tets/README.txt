@@ -46,7 +46,7 @@ functions to those functions directly, you have to assign them to some
 variable first then pass name of the variable.
 
 Example:
-  x=$$member( $$split("some|stuff","|"), 0)  # This is not going to work as epxected
+  x=$$member( $$split("some|stuff","|"), 0)  # This is not going to work as expected
 
   # Has to have two extra named vars, to achieve that
   s="some|stuff"

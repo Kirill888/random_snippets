@@ -1,4 +1,4 @@
-#This file contains a bunch helper functions for writing qmake scripts more comfortable.
+#This file contains a bunch of helper functions for writing qmake scripts more comfortable.
 #
 #
 
@@ -100,13 +100,13 @@ defineTest(apply.test){
 # generates a boolean result for condition statement
 defineTest(eval.test){
   out=0
-  eval($${1}": out=1")
+  eval("$${1}: out=1")
   return ( $$out )
 }
 
 # Takes a test expression and converts into value: '' when false True when true
 defineReplace(test2val){
-  eval($$1": out=True")
+  eval("$${1}: out=True")
   return ( $$out )
 }
 
@@ -115,7 +115,7 @@ defineReplace(test2val){
 defineReplace(mapcat){
   func=$$first($$ARGS)
   args=$$rest($$ARGS)
-  for( v , args): eval("out += \$\$"$$func"( $$v )")
+  for( v , args): eval("out += \$\$$${func}( $$v )")
   return ($$out)
 }
 
@@ -125,7 +125,7 @@ defineReplace(filter){
   pred=$$first($$ARGS)
   args=$$rest($$ARGS)
 
-  for( v, args ): eval($$pred"(\$\$v): out += \$\$v")
+  for( v, args ): eval("$${pred}(\$\$v): out += \$\$v")
 
   return ($$out)
 }
@@ -136,7 +136,7 @@ defineReplace(filterNot){
   pred=$$first($$ARGS)
   args=$$rest($$ARGS)
 
-  for( v, args ): eval("!"$$pred"(\$\$v): out += \$\$v")
+  for( v, args ): eval("!$${pred}(\$\$v): out += \$\$v")
 
   return ($$out)
 }
@@ -239,11 +239,11 @@ defineReplace(func.repeat){
   MAXLOOP=$$4
 
   count(MAXLOOP,0): loop=$$__loop1000
-  loop=$$eval("\$\$__loop"$${MAXLOOP})
+  loop=$$eval("\$\$__loop$${MAXLOOP}")
 
   # body = cond($$s): s=$$func($$s)
   for( v, loop){
-    apply.test($$cond $$s): s=$$eval("\$\$"$${func}"(\$\$s)")
+    apply.test($$cond $$s): s=$$eval("\$\$$${func}(\$\$s)")
     else : break()
   }
   return ( $$s )

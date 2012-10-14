@@ -208,7 +208,8 @@ message("xxx:" $$x )
 
 
 x=$$value.if('', True, False)
-message("value.if:" $$x)
+message("value.if.f:" $$x)
+message("value.if.t:" $$value.if("True", True, False))
 
 apply.test(count x 1): message("yay")
 else                 : message("what??")
@@ -230,3 +231,8 @@ for(x, __loop10 ){
   out += ':'
   count(out, 4): break()
 }
+
+k=Ki
+y=Yi
+message("$\$$$k $${k} ")
+
