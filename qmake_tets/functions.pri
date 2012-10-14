@@ -227,7 +227,7 @@ defineReplace(value.if){
 
 #  func.repeat(cond, func, seed [, MAXLOOP=1000] ) -> func(func(func(...func(s0)...)))
 #
-#  Repeatedly call function with output of previous call, stop when condition returns true
+#  Repeatedly call function with output of previous call, stop when condition returns false
 #
 #  s = seed; while( cond(s) ){s=func(s);}; return s;
 #
