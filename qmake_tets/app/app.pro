@@ -125,7 +125,7 @@ defineReplace(foo.bar){
 
 message("foo.bar:" $$foo.bar(kkkkk))
 message("length:" $$length( 1 2 3 4) )
-message("expand:" $$expand("boo.b.ees", ".") )
+message("v.split:" $$v.split("boo.b.ees", ".") )
 
 message("inc:" $$inc(1) )
 message("dec:" $$dec(1) )
@@ -236,3 +236,17 @@ k=Ki
 y=Yi
 message("$\$$$k $${k} ")
 
+s="-lsomeLib-lo.12"
+
+matches($$s,"^-l") : message("yay: match")
+else               : message("nope")
+
+matchesExactly("-lz-10.3A_g","^-l[-a-zA-Z0-9._]+") : message("yay: matches exactly")
+else                 : message("nope")
+
+
+matches("xxx@$%^&@xxx","foo"): message("Woot!")
+else : message("marker.ok")
+
+matches("xxx@$%^&@xxx","xx"): message("marker.ok2")
+else : message("Woot!")

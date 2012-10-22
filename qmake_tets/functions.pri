@@ -68,9 +68,9 @@ defineReplace(third){
   return ( $$member(ARGS,2) )
 }
 
-#expand(string, separator) -> list
+# v.split(string, separator) -> list
 # Like built in split but input is value not variable
-defineReplace(expand){
+defineReplace(v.split){
   s=$$1
   sep=$$2
   out= $$split(s,$$sep)
@@ -110,6 +110,13 @@ defineReplace(test2val){
   return ( $$out )
 }
 
+#Like built-in contains but first argument is taken by value
+defineTest(v.contains){
+  v=$$1
+  contains(v,$$2): return (1)
+  else           : return (0)
+}
+
 # mapcat(func, list) -- call function on every element of the list in order
 # collecting all results into output list
 defineReplace(mapcat){
@@ -140,6 +147,35 @@ defineReplace(filterNot){
 
   return ($$out)
 }
+
+# matches(s, regex) -> bool
+#  True when there is a match anywhere
+defineTest(matches){
+  s=$$1
+  regex=$$2
+
+  marker="xxx@$%^&@xxx"
+
+  #This won't save you from all possible crazy stuff, but cover most cases
+  same($$marker,$$s): marker="$${marker}.$${marker}"
+
+  v.contains( $$v.split( $$replace(s, $$regex, "--$${marker}--") , "--" ), $$marker) : return(1)
+  return (0)
+}
+
+# matchesExactly(s, regex) -> bool
+#  True when whole string matches regular expression
+defineTest(matchesExactly){
+  s=$$1
+  regex=$$2
+
+  marker="xxx@$%^&@xxx"
+  same($$marker,$$s): marker="$${marker}.$${marker}"
+
+  same( $$replace(s, $$regex, $${marker}) , $$marker) : return(1)
+  return (0)
+}
+
 
 
 # lookup(key, map) -> map[key]
