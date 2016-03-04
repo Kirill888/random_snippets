@@ -1,0 +1,10 @@
+# Site settings
+title: Random Snippets
+tag_text: Random Snippets
+description: testing jekyll with github
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+exclude: ["README.md"]
