@@ -17,9 +17,9 @@ can not be assigned to a variable. There are very few built in
 functions, but user can define their own.
 
 Variables are all lists of strings there is no distinction between a
-string and a list of one string. There are no numerical type, but
+string and a list of one string. There are no numerical types, but
 there is a numerical constant that can only be used in the context
-test function 'count' and function 'member'.
+of a test function 'count' and function 'member'.
 
  x=one two three
  count(x,3): message("Yes variable x is a three a element list")
@@ -121,6 +121,6 @@ Recursion
 Not disallowed but seems to seg-fault interpreter on first return from
 the call chain or soon after. I suspect there is some state that is
 per-function rather than per function call and it gets cleared on
-return, but is still in use by calling function.
+return, but is still in use by a calling function.
 
 
