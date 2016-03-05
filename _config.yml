@@ -2,6 +2,7 @@
 title: Random Snippets
 tag_text: Random Snippets
 description: testing jekyll with github
+baseurl: /random_snippets
 
 # Build settings
 markdown: kramdown
